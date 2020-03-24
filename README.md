@@ -22,7 +22,7 @@ In this example the FANN learns the negation with 10 inputs of batch size 10 and
 
 ### Guide
 1. Download the Pytorch C++ API and extract it to your Project Folder
-2. Make sure that the MSVC Buildtools for C++ are installed (MinGW doesn't work1)
-3. run 'cmake -B build -DCAMKE_PREFIX_PATH=path/to/libtorch/share/cmake/Torch'
-4. Build the actual source file with 'cmake --build build --config Release'
-5. The binary file will be located under /build/Release/ run with ./build/Release/binaryname.exe
+2. Make sure that the MSVC Buildtools for C++ are installed (MinGW doesn't work!)
+3. run '''cmake -B build -DCAMKE_PREFIX_PATH=path/to/libtorch/share/cmake/Torch'''
+4. Build the actual source file with '''cmake --build build --config Release'''
+5. The binary file will be located under /build/Release/ run with '''./build/Release/binaryname.exe'''
