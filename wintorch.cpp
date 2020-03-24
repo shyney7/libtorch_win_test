@@ -6,7 +6,7 @@
 #include <vector>
 
 
-//-----------------------------NETZDEFINITION-----------------------------------------------------
+//-----------------------------NETZDEFINITION-----------------------------
 struct MeinNetz : torch::nn::Module {
   MeinNetz() {
     fc1 = register_module("fc1", torch::nn::Linear(10, 10));
@@ -22,16 +22,16 @@ struct MeinNetz : torch::nn::Module {
   torch::nn::Linear fc1{nullptr}, fc2{nullptr};
 };
 
-//----------------------Funktionsprototyp Onelinevector-------------------------------------------
+//----------------------Funktionsprototyp Onelinevector----------------------
 
 std::vector<float>
 onelinevector(const std::vector<std::vector<float>> &invector);
 
-//------------------------Funktionsprototyp csv2Dvector-------------------------------------------
+//------------------------Funktionsprototyp csv2Dvector----------------------
 
 std::vector<std::vector<float>> csv2Dvector(std::string inputFileName);
 
-//-------------------------------------main-Funktion----------------------------
+//-------------------------------------main-Funktion-------------------------
 
 int main() {
   std::vector<std::vector<float>> data = csv2Dvector("input.csv");
@@ -50,7 +50,7 @@ int main() {
     std::cout << std::endl;
   }
 
-  //-------------Transformation des Inputs in 1D für tensor integration:------------------------------
+  //-------------Transformation des Inputs in 1D für tensor integration:-------
   std::cout << "Transformiere Input Vector mit Zeilenanzahl: " << data.size()
             << " Und Spaltenanzahl: " << data.front().size()
             << " in einen Tensor:" << std::endl;
@@ -64,7 +64,7 @@ int main() {
                        static_cast<unsigned int>(data.front().size())});
   std::cout << "Input Tensor: \n" << itensor << std::endl;
 
-  //------------------------Das gleiche für den Output (target)----------------------------------------
+  //------------------------Das gleiche für den Output (target)------------------
   std::vector<std::vector<float>> outputdata = csv2Dvector("output.csv");
 
   std::cout << "Transformiere Output Vector mit Zeilenanzahl: "
@@ -81,7 +81,7 @@ int main() {
                         static_cast<unsigned int>(outputdata.front().size())});
   std::cout << "Output Tensor: \n" << otensor << std::endl;
 
-  //---------------------------------------------------------------------------------------------------
+  //-------------------------------------------------------------------------------
   // Objekt der Klasse MeinNetz erzeugen:
   auto net = std::make_shared<MeinNetz>();
 
