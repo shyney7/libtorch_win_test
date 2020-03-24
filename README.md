@@ -8,6 +8,7 @@
 <img src="https://img.shields.io/github/license/prabhuomkar/pytorch-cpp">
 <img src="https://img.shields.io/badge/libtorch-1.4-ee4c2c">
 <img src="https://img.shields.io/badge/cmake-3.14-064f8d">
+<img src="https://img.shields.io/badge/MSVC-2019-blueviolet">
 </p>
 This is just a private playground repo of my first attempts with the Pytorch C++ API.
 
