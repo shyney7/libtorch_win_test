@@ -4,8 +4,9 @@
 #include <string>
 #include <torch/torch.h>
 #include <vector>
+#include "include/owndata.h"
 
-
+size_t batch_size = 5;
 //-----------------------------NETZDEFINITION-----------------------------
 struct MeinNetz : torch::nn::Module {
   MeinNetz() {
@@ -34,13 +35,14 @@ std::vector<std::vector<float>> csv2Dvector(std::string inputFileName);
 //-------------------------------------main-Funktion-------------------------
 
 int main() {
+  /*
   std::vector<std::vector<float>> data = csv2Dvector("input.csv");
 
   /* for (auto l : data) {
     for (auto x : l)
     std::cout << x << " ";
     std::cout << std::endl;
-  } */
+  } 
 
   std::cout << "Importierte Daten aus der csv Datei (Rohformat): " << std::endl;
   for (int i = 0; i < data.size(); i++) {
@@ -79,15 +81,18 @@ int main() {
   torch::Tensor otensor = torch::from_blob(
       olinevec.data(), {static_cast<unsigned int>(outputdata.size()),
                         static_cast<unsigned int>(outputdata.front().size())});
-  std::cout << "Output Tensor: \n" << otensor << std::endl;
+  std::cout << "Output Tensor: \n" << otensor << std::endl;         */
 
   //-------------------------------------------------------------------------------
+  auto custom_dataset = CustomDataset("input.csv","output.csv").map(torch::data::transforms::Stack<>());
+  auto data_loader = torch::data::make_data_loader<torch::data::samplers::SequentialSampler>(std::move(custom_dataset),batch_size);
+
   // Objekt der Klasse MeinNetz erzeugen:
-  auto net = std::make_shared<MeinNetz>();
+ // auto net = std::make_shared<MeinNetz>();
 
   // Optimierer Auswahl:
-  torch::optim::SGD optimizer(net->parameters(), /*lr=*/0.2);
-
+  //torch::optim::SGD optimizer(net->parameters(), /*lr=*/0.2);
+/*
   // Lernschleife:
   for (size_t epoch = 1; epoch <= 50; epoch++) {
     auto input = torch::autograd::Variable(itensor);
@@ -102,7 +107,7 @@ int main() {
     std::cout << "Epoch: " << epoch << " Loss: " << loss.item<float>()
               << std::endl;
   }
-
+*/
   return 0;
 }
 
