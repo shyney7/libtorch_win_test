@@ -14,8 +14,9 @@ std::vector<std::vector<float>> csv2Dvector(std::string inputFileName);
 
 class CustomDataset : public torch::data::datasets::Dataset<CustomDataset> {
 
+private:
 std::vector<std::vector<float>> xdata, ydata;
-
+public:
 CustomDataset(std::string xpath, std::string ypath) {
     xdata = csv2Dvector(xpath);
     ydata = csv2Dvector(ypath);
